@@ -567,16 +567,17 @@ def render_governance_drift() -> None:
 
 def render_metrics() -> None:
     cards = "".join(
-        f"""
-        <div class="metric-card">
-            <div class="metric-label">{metric['label']}</div>
-            <div class="metric-value {metric['tone']}">{metric['value']}</div>
-            <div class="metric-note">{metric['note']}</div>
-        </div>
-        """
+        (
+            '<div class="metric-card">'
+            f'<div class="metric-label">{metric["label"]}</div>'
+            f'<div class="metric-value {metric["tone"]}">{metric["value"]}</div>'
+            f'<div class="metric-note">{metric["note"]}</div>'
+            "</div>"
+        )
         for metric in METRICS
     )
-    st.markdown(f'<div class="metric-grid">{cards}</div>', unsafe_allow_html=True)
+    html_content = f'<div class="metric-grid">{cards}</div>'
+    st.markdown(html_content, unsafe_allow_html=True)
 
 
 def render_events() -> None:
