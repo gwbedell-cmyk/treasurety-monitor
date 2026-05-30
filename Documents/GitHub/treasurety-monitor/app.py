@@ -518,12 +518,12 @@ def render_certificate_status() -> None:
         ("Verification Status", CERTIFICATE["verification_status"], "value-blue"),
     ]
     rows = "".join(
-        f"""
-        <div class="detail-row">
-            <div class="label">{label}</div>
-            <div class="value {tone}">{value}</div>
-        </div>
-        """
+        (
+            '<div class="detail-row">'
+            f'<div class="label">{label}</div>'
+            f'<div class="value {tone}">{value}</div>'
+            "</div>"
+        )
         for label, value, tone in details
     )
 
@@ -541,12 +541,12 @@ def render_certificate_status() -> None:
 
 def render_governance_drift() -> None:
     indicators = "".join(
-        f"""
-        <div class="indicator">
-            <div class="indicator-name">{name}</div>
-            <div class="indicator-status">{status}</div>
-        </div>
-        """
+        (
+            '<div class="indicator">'
+            f'<div class="indicator-name">{name}</div>'
+            f'<div class="indicator-status">{status}</div>'
+            "</div>"
+        )
         for name, status in DRIFT_INDICATORS
     )
 
@@ -582,25 +582,26 @@ def render_metrics() -> None:
 
 def render_events() -> None:
     events = "".join(
-        f"""
-        <div class="event-card">
-            <div class="check">✓</div>
-            <div class="event-text">{event}</div>
-        </div>
-        """
+        (
+            '<div class="event-card">'
+            '<div class="check">✓</div>'
+            f'<div class="event-text">{event}</div>'
+            "</div>"
+        )
         for event in ASSURANCE_EVENTS
     )
-    st.markdown(f'<div class="event-list">{events}</div>', unsafe_allow_html=True)
+    html_content = f'<div class="event-list">{events}</div>'
+    st.markdown(html_content, unsafe_allow_html=True)
 
 
 def render_trust_artifact() -> None:
     rows = "".join(
-        f"""
-        <div class="artifact-row">
-            <div class="label">{label}</div>
-            <div class="value">{value}</div>
-        </div>
-        """
+        (
+            '<div class="artifact-row">'
+            f'<div class="label">{label}</div>'
+            f'<div class="value">{value}</div>'
+            "</div>"
+        )
         for label, value in TRUST_ARTIFACT.items()
     )
 
